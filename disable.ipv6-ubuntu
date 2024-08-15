@@ -1,1 +1,12 @@
+// backup file /etc/default/grub
+rsync -auvr /etc/default/grub /etc/default/grub.backup2024
 
+// jalankan command berikut untuk disable ipv6 
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="maybe-ubiquity"/GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"/g' /etc/default/grub
+sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/g' /etc/default/grub
+
+// update grub untuk konfirmasi perubahan
+update-grub
+
+//reboot server
+reboot
